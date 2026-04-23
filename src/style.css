@@ -1,0 +1,61 @@
+@import "@abgov/web-components/index.css";
+
+.demo-page {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}
+
+.demo-main-column {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.demo-sidebar {
+    width: 320px;
+    border-left: 1px solid #cdcdcd;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    font-family: acumin-variable, helvetica-neue, arial, sans-serif !important;
+    color: #000000;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+}
+
+.demo-sidebar button {
+    border: none;
+    background: none;
+    text-align: left;
+    color: #6f6f6f;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-family: acumin-variable, helvetica-neue, arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+}
+
+.demo-sidebar button:hover {
+    cursor: pointer;
+    background: #f2f0f0;
+    color: #000000;
+}
+
+.demo-sidebar button.current {
+    font-weight: bold !important;
+}
+
+.broken .review-actions {
+    position: relative;
+}
+
+.broken .back-to-app {
+    position: absolute;
+    top: 52px;
+    left: 220px;
+}
