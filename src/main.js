@@ -137,6 +137,13 @@ const VersionManager = {
   },
 
   updateCustom() {
+    // Apply custom class to demo-main-column
+    const mainColumn = this.app.querySelector('.demo-main-column');
+    if (mainColumn) {
+      mainColumn.classList.remove('hardcoded', 'variables', 'replaced');
+      mainColumn.classList.add(this.custom);
+    }
+
     // Apply custom state to components
     document.querySelectorAll('*').forEach(el => {
       if (el.tagName) {
