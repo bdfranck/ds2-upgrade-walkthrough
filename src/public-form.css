@@ -1,0 +1,92 @@
+
+.broken .review-actions {
+    position: relative;
+}
+
+.broken .back-to-app {
+    position: absolute;
+    top: 52px;
+    left: 220px;
+}
+
+.placeholder {
+    padding: 1rem;
+    background-color: var(--goa-color-greyscale-50);
+    border-radius: 0.rem;
+    margin-bottom: 2rem;
+}
+
+.replaced .workspace-page {
+    background-color: var(--goa-color-greyscale-50);
+}
+
+.replaced .workspace-main {
+    background: var(--goa-color-greyscale-white);
+    margin-top: 1rem;
+    margin-right: 1rem;
+    padding: 2rem;
+    border-radius: var(--goa-border-radius-3xl);
+    border: 1px solid var(--goa-color-greyscale-150);
+	min-height: calc(100vh - var(--goa-space-l) * 2);
+
+}
+
+.broken-table {
+    margin: 1rem 0 3rem;
+}
+
+.broken-table,
+.broken-table tr,
+.broken-table td {
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+.broken-table td {
+    padding: 8px;
+    border-bottom: 1px solid lightgrey;
+    margin: 0;
+}
+
+.details {
+    margin: 1.5rem 0;
+}
+
+.details summary {
+    cursor: pointer;
+	-webkit-text-decoration: var(--goa-details-text-decoration);
+	text-decoration: var(--goa-details-text-decoration);
+	color: var(--goa-details-color-text);
+	font: var(--goa-details-typography);
+}
+
+.details-content {
+	border-left: var(--goa-details-content-left-border);
+	padding-left: var(--goa-details-content-padding-left);
+	padding-top: var(--goa-details-content-padding-top);
+	padding-bottom: var(--goa-details-content-padding-bottom);
+	padding-right: var(--goa-details-content-padding-right);
+	margin-left: 4px;
+	margin-top: var(--goa-details-margin-bottom);
+	margin-bottom: var(--goa-details-margin-bottom);
+}
+
+.v2 .demo-table.is-broken td {
+    position: absolute;
+}
+
+p.small {
+  margin-top: var(--goa-space-2xs);
+  font-size: var(--goa-typography-body-s);
+  color: var(--goa-color-text-secondary);
+}
+
+.broken .form-page-block {
+    display: block;
+    min-height: calc(100vh - 251px);
+}
+
+.fixed .form-page-block {
+    display: block;
+    min-height: calc(100vh - 157px);
+}

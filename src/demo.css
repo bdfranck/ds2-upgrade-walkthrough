@@ -1,0 +1,79 @@
+.demo-page {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}
+
+.demo-main-column {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.demo-sidebar {
+    width: 340px;
+    border-left: 1px solid var(--goa-color-greyscale-200);
+    padding: 2rem;
+    background-color: var(--goa-color-greyscale-50);
+}
+
+.demo-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.demo-menu .current {
+    font-weight: var(--goa-font-weight-semi-bold) !important;
+    color: var(--goa-color-primary) !important;
+}
+
+.demo-main-column.broken .is-broken {
+    display: block;
+}
+
+.demo-main-column.broken .is-fixed {
+    display: none;
+}
+
+.demo-main-column.fixed .is-broken {
+    display: none;
+}
+
+.demo-main-column.fixed .is-fixed {
+    display: block;
+}
+
+.demo-main-column.hardcoded .is-hardcoded {
+    display: block;
+}
+
+.demo-main-column.hardcoded .is-variables,
+.demo-main-column.hardcoded .is-replaced {
+    display: none;
+}
+
+.demo-main-column.variables .is-variables {
+    display: block;
+}
+
+.demo-main-column.variables .is-hardcoded,
+.demo-main-column.variables .is-replaced {
+    display: none;
+}
+
+.demo-main-column.replaced .is-replaced {
+    display: block;
+}
+
+.demo-main-column.replaced .is-not-replaced {
+    display: none;
+}
+
+.demo-main-column.replaced .is-variables,
+.demo-main-column.replaced .is-hardcoded {
+    display: none;
+}

@@ -1,9 +1,6 @@
 import "@abgov/web-components";
 import appTemplate from './app.template.html?raw'
-import './pages/start-page.js'
 import './pages/public-form.js'
-import './pages/question.js'
-import './pages/review.js'
 import './pages/workspace.js'
 import javascriptLogo from './assets/javascript.svg'
 import viteLogo from './assets/vite.svg'
@@ -34,8 +31,10 @@ const VersionManager = {
 
   checkHash() {
     const hash = window.location.hash.slice(1); // Remove #
-    if (hash && ['start-page', 'public-form', 'question-page', 'review-page', 'workspace'].includes(hash)) {
+    if (hash && ['public-form', 'workspace'].includes(hash)) {
       this.initialPage = hash === 'workspace' ? 'workspace-page' : hash;
+    } else {
+      this.initialPage = 'public-form';
     }
   },
 
@@ -69,7 +68,7 @@ const VersionManager = {
         });
       });
     });
-    
+
     this.observer.observe(document.body, {
       childList: true,
       subtree: true
@@ -79,7 +78,7 @@ const VersionManager = {
   updateNode(node) {
     if (node.tagName) {
       const tag = node.tagName.toUpperCase();
-      if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
+      if (tag.startsWith('GOA-') || tag === 'PUBLIC-FORM' || tag === 'WORKSPACE-PAGE') {
         // Only update components inside demo-main-column
         if (node.closest('.demo-main-column')) {
           node.setAttribute('version', this.current);
@@ -114,8 +113,6 @@ const VersionManager = {
     this.updateVersionClass();
     this.updateStylesheet();
     this.updateComponents();
-    this.updateToggleButton();
-    this.updateSidebar();
   },
 
   updateVersionClass() {
@@ -123,18 +120,6 @@ const VersionManager = {
     if (mainColumn) {
       mainColumn.classList.remove('v1', 'v2');
       mainColumn.classList.add(`v${this.current}`);
-    }
-  },
-
-  updateSidebar() {
-    const v1Btn = this.app.querySelector('#sidebar-v1');
-    const v2Btn = this.app.querySelector('#sidebar-v2');
-    
-    if (v1Btn) {
-      v1Btn.style.fontWeight = (this.current === '1') ? 'bold' : 'normal';
-    }
-    if (v2Btn) {
-      v2Btn.style.fontWeight = (this.current === '2') ? 'bold' : 'normal';
     }
   },
 
@@ -150,7 +135,7 @@ const VersionManager = {
     document.querySelectorAll('.demo-main-column *').forEach(el => {
       if (el.tagName) {
         const tag = el.tagName.toUpperCase();
-        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
+        if (tag.startsWith('GOA-') || tag === 'PUBLIC-FORM' || tag === 'WORKSPACE-PAGE') {
           el.setAttribute('styling', this.styling);
         }
       }
@@ -169,7 +154,7 @@ const VersionManager = {
     document.querySelectorAll('.demo-main-column *').forEach(el => {
       if (el.tagName) {
         const tag = el.tagName.toUpperCase();
-        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
+        if (tag.startsWith('GOA-') || tag === 'PUBLIC-FORM' || tag === 'WORKSPACE-PAGE') {
           el.setAttribute('custom', this.custom);
         }
       }
@@ -181,12 +166,12 @@ const VersionManager = {
     document.querySelectorAll('.demo-main-column *').forEach(el => {
       if (el.tagName) {
         const tag = el.tagName.toUpperCase();
-        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
+        if (tag.startsWith('GOA-') || tag === 'PUBLIC-FORM' || tag === 'WORKSPACE-PAGE') {
           el.setAttribute('step', this.step);
         }
       }
     });
-    
+
     this.updateStepButtons();
   },
 
@@ -196,9 +181,9 @@ const VersionManager = {
       const btn = this.app.querySelector(`#step-${i}`);
       if (btn) {
         if (this.step === String(i)) {
-          btn.classList.add('current');
+          btn.setAttribute('current', 'true');
         } else {
-          btn.classList.remove('current');
+          btn.removeAttribute('current');
         }
       }
     }
@@ -242,11 +227,19 @@ const VersionManager = {
     if (container) {
       const elementName = pageName === 'workspace' ? 'workspace-page' : pageName;
       container.innerHTML = `<${elementName} version="${this.current}"></${elementName}>`;
-      
+
       // Update browser history
       if (pushHistory) {
         history.pushState({ page: pageName }, '', `#${pageName}`);
       }
+    }
+    
+    // Switch to step 1 when navigating to public-form or workspace
+    if (pageName === 'public-form' || pageName === 'workspace') {
+      this.setVersion('1');
+      this.setStyling('broken');
+      this.setCustom('hardcoded');
+      this.setStep('1');
     }
   },
 
@@ -262,22 +255,12 @@ const VersionManager = {
   },
 
   updateComponents() {
-    // Update ALL custom elements that start with "goa-" or are start-page
+    // Update ALL custom elements that start with "goa-"
     document.querySelectorAll('*').forEach(el => this.updateNode(el));
   },
 
   updateToggleButton() {
-    const startPage = this.app.querySelector('start-page');
-    if (startPage) {
-      const btn = startPage.querySelector('#version-toggle');
-      const status = startPage.querySelector('#version-status');
-      if (btn) {
-        btn.textContent = `Switch to v${this.current === '1' ? '2' : '1'}`;
-      }
-      if (status) {
-        status.textContent = `Current: v${this.current}`;
-      }
-    }
+    // Start page removed - no toggle button to update
   },
 
   async render() {
@@ -301,7 +284,7 @@ const VersionManager = {
         container.innerHTML = `<${elementName} version="${this.current}"></${elementName}>`;
       }
     }
-    
+
     // Listen for toggle-version event from any page
     this.app.addEventListener('toggle-version', () => {
       this.toggle();
@@ -325,7 +308,7 @@ const VersionManager = {
     const step1Btn = this.app.querySelector('#step-1');
     const step2Btn = this.app.querySelector('#step-2');
     const step3Btn = this.app.querySelector('#step-3');
-    
+
     if (step1Btn) {
       step1Btn.onclick = () => {
         this.setVersion('1');
@@ -350,7 +333,7 @@ const VersionManager = {
         this.setStep('3');
       };
     }
-    
+
     const step4Btn = this.app.querySelector('#step-4');
     if (step4Btn) {
       step4Btn.onclick = () => {
@@ -360,7 +343,7 @@ const VersionManager = {
         this.setStep('4');
       };
     }
-    
+
     const step5Btn = this.app.querySelector('#step-5');
     if (step5Btn) {
       step5Btn.onclick = () => {
@@ -373,7 +356,6 @@ const VersionManager = {
 
     // Set initial version on all components and sidebar
     this.updateComponents();
-    this.updateSidebar();
     this.updateStyling();
     this.updateCustom();
     this.updateStep();

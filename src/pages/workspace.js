@@ -37,6 +37,25 @@ class WorkspacePage extends HTMLElement {
     // Defer setup until DOM is settled
     await new Promise(resolve => requestAnimationFrame(resolve));
     this.setupFilters();
+    this.setupSideMenuInitialState();
+  }
+
+  setupSideMenuNavigation() {
+    const menuItems = this.querySelectorAll('goa-work-side-menu-item');
+    menuItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        menuItems.forEach(i => i.current = false);
+        item.current = true;
+      });
+    });
+  }
+
+  setupSideMenuInitialState() {
+    const menuItems = this.querySelectorAll('goa-work-side-menu-item');
+    if (menuItems.length > 0) {
+      menuItems[0].current = true;
+    }
   }
 
   setupFilters() {
@@ -45,6 +64,9 @@ class WorkspacePage extends HTMLElement {
     const clearStatusFilter = this.querySelector('#clearStatusFilter');
     const applyFilterBtn = this.querySelector('#applyFilterBtn');
     const filterChipsContainer = this.querySelector('#filterChipsContainer');
+
+    // Setup work-side-menu-item navigation
+    this.setupSideMenuNavigation();
 
     // Search input - filter as you type
     if (searchInput) {

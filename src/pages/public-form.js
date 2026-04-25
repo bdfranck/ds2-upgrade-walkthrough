@@ -33,12 +33,12 @@ class PublicForm extends HTMLElement {
     const template = await loadTemplate();
     this.innerHTML = template;
 
-    // Add click handlers to all goa-link elements to navigate to question page
+    // Add click handlers to all goa-link elements to navigate to workspace
     this.querySelectorAll('goa-link, a').forEach(link => {
       link.onclick = (e) => {
         e.preventDefault();
         this.dispatchEvent(new CustomEvent('navigate-to', { 
-          detail: { page: 'question-page' },
+          detail: { page: 'workspace' },
           bubbles: true
         }));
       };
