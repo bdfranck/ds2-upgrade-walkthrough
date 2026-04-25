@@ -1,15 +1,15 @@
-// Task List Page Custom Element
+// Public Form Page Custom Element
 let templateContent = null;
 
 async function loadTemplate() {
   if (!templateContent) {
-    const template = await import('./task-list.html?raw');
+    const template = await import('./public-form.html?raw');
     templateContent = template.default;
   }
   return templateContent;
 }
 
-class TaskList extends HTMLElement {
+class PublicForm extends HTMLElement {
   constructor() {
     super();
   }
@@ -46,4 +46,4 @@ class TaskList extends HTMLElement {
   }
 }
 
-customElements.define('task-list', TaskList);
+customElements.define('public-form', PublicForm);

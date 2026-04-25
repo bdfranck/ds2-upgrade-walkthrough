@@ -1,9 +1,10 @@
 import "@abgov/web-components";
 import appTemplate from './app.template.html?raw'
 import './pages/start-page.js'
-import './pages/task-list.js'
+import './pages/public-form.js'
 import './pages/question.js'
 import './pages/review.js'
+import './pages/workspace.js'
 import javascriptLogo from './assets/javascript.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -33,8 +34,8 @@ const VersionManager = {
 
   checkHash() {
     const hash = window.location.hash.slice(1); // Remove #
-    if (hash && ['start-page', 'task-list', 'question-page', 'review-page'].includes(hash)) {
-      this.initialPage = hash;
+    if (hash && ['start-page', 'public-form', 'question-page', 'review-page', 'workspace'].includes(hash)) {
+      this.initialPage = hash === 'workspace' ? 'workspace-page' : hash;
     }
   },
 
@@ -43,6 +44,14 @@ const VersionManager = {
     window.addEventListener('popstate', (e) => {
       if (e.state && e.state.page) {
         this.navigateTo(e.state.page, false); // Don't push history again
+      }
+    });
+
+    // Handle direct hash navigation (e.g., clicking <a href="#page">)
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        this.navigateTo(hash);
       }
     });
   },
@@ -70,8 +79,11 @@ const VersionManager = {
   updateNode(node) {
     if (node.tagName) {
       const tag = node.tagName.toUpperCase();
-      if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'TASK-LIST' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE') {
-        node.setAttribute('version', this.current);
+      if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
+        // Only update components inside demo-main-column
+        if (node.closest('.demo-main-column')) {
+          node.setAttribute('version', this.current);
+        }
       }
     }
   },
@@ -99,10 +111,19 @@ const VersionManager = {
   setVersion(version) {
     this.current = version;
     localStorage.setItem('goa-version', version);
+    this.updateVersionClass();
     this.updateStylesheet();
     this.updateComponents();
     this.updateToggleButton();
     this.updateSidebar();
+  },
+
+  updateVersionClass() {
+    const mainColumn = this.app.querySelector('.demo-main-column');
+    if (mainColumn) {
+      mainColumn.classList.remove('v1', 'v2');
+      mainColumn.classList.add(`v${this.current}`);
+    }
   },
 
   updateSidebar() {
@@ -125,11 +146,11 @@ const VersionManager = {
       mainColumn.classList.add(this.styling);
     }
 
-    // Apply styling state to components
-    document.querySelectorAll('*').forEach(el => {
+    // Apply styling state to components in demo-main-column only
+    document.querySelectorAll('.demo-main-column *').forEach(el => {
       if (el.tagName) {
         const tag = el.tagName.toUpperCase();
-        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'TASK-LIST' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE') {
+        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
           el.setAttribute('styling', this.styling);
         }
       }
@@ -144,11 +165,11 @@ const VersionManager = {
       mainColumn.classList.add(this.custom);
     }
 
-    // Apply custom state to components
-    document.querySelectorAll('*').forEach(el => {
+    // Apply custom state to components in demo-main-column only
+    document.querySelectorAll('.demo-main-column *').forEach(el => {
       if (el.tagName) {
         const tag = el.tagName.toUpperCase();
-        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'TASK-LIST' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE') {
+        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
           el.setAttribute('custom', this.custom);
         }
       }
@@ -156,11 +177,11 @@ const VersionManager = {
   },
 
   updateStep() {
-    // Apply step state to components
-    document.querySelectorAll('*').forEach(el => {
+    // Apply step state to components in demo-main-column only
+    document.querySelectorAll('.demo-main-column *').forEach(el => {
       if (el.tagName) {
         const tag = el.tagName.toUpperCase();
-        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'TASK-LIST' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE') {
+        if (tag.startsWith('GOA-') || tag === 'START-PAGE' || tag === 'PUBLIC-FORM' || tag === 'QUESTION-PAGE' || tag === 'REVIEW-PAGE' || tag === 'WORKSPACE-PAGE') {
           el.setAttribute('step', this.step);
         }
       }
@@ -219,7 +240,8 @@ const VersionManager = {
   navigateTo(pageName, pushHistory = true) {
     const container = this.app.querySelector('#page-container');
     if (container) {
-      container.innerHTML = `<${pageName} version="${this.current}"></${pageName}>`;
+      const elementName = pageName === 'workspace' ? 'workspace-page' : pageName;
+      container.innerHTML = `<${elementName} version="${this.current}"></${elementName}>`;
       
       // Update browser history
       if (pushHistory) {
@@ -264,11 +286,19 @@ const VersionManager = {
 
     this.app.innerHTML = html;
 
+    // Add version class to demo-main-column
+    const mainColumn = this.app.querySelector('.demo-main-column');
+    if (mainColumn) {
+      mainColumn.classList.remove('v1', 'v2');
+      mainColumn.classList.add(`v${this.current}`);
+    }
+
     // Set initial page from hash if present
     if (this.initialPage) {
       const container = this.app.querySelector('#page-container');
       if (container) {
-        container.innerHTML = `<${this.initialPage} version="${this.current}"></${this.initialPage}>`;
+        const elementName = this.initialPage === 'workspace' ? 'workspace-page' : this.initialPage;
+        container.innerHTML = `<${elementName} version="${this.current}"></${elementName}>`;
       }
     }
     

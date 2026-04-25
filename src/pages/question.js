@@ -39,7 +39,7 @@ class QuestionPage extends HTMLElement {
       backLink.onclick = (e) => {
         e.preventDefault();
         this.dispatchEvent(new CustomEvent('navigate-to', { 
-          detail: { page: 'task-list' },
+          detail: { page: 'public-form' },
           bubbles: true
         }));
       };

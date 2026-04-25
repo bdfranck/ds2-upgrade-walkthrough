@@ -1,0 +1,353 @@
+<goa-column-layout>
+    <section slot="header">
+        <goa-app-header url="/" heading="Demo: Upgrading to Design System v2">
+        </goa-app-header>
+    </section>
+    <goa-page-block width="704px">
+        <div id="page-container">
+            <h2>Apply for a service</h2>
+            <div class="is-hardcoded">
+                <div
+                    style="
+                        border-left: 24px solid #f9ce2d;
+                        background-color: #f1f1f1;
+                        padding: 16px;
+                        margin-top: 32px;
+                        margin-bottom: 32px;
+                        margin-right: 16px;
+                        margin-left: 0;
+                        max-width: 360px;
+                    "
+                >
+                    <h3
+                        style="
+                            margin: 0 0 8px 0;
+                            color: #1e2e46;
+                            font-size: 18px;
+                            font-weight: 700;
+                        "
+                    >
+                        Application incomplete
+                    </h3>
+                    <p style="margin: 0; color: #333; font-size: 16px">
+                        You have completed 1 of 3 sections.
+                    </p>
+                </div>
+            </div>
+            <div class="is-variables">
+                <div
+                    style="
+                        border: 1px solid
+                            var(--goa-callout-l-important-border-color);
+                        background-color: var(
+                            --goa-callout-l-important-content-bg-color
+                        );
+                        border-radius: var(--goa-callout-border-radius);
+                        margin-top: var(--goa-spacing-xl);
+                        margin-bottom: var(--goa-spacing-xl);
+                        margin-right: var(--goa-spacing-m);
+                        margin-left: 0;
+                        max-width: 360px;
+                    "
+                >
+                    <div
+                        style="
+                            margin: 0;
+                            padding: var(--goa-callout-heading-padding);
+                            color: var(--goa-callout-heading-color);
+                            font: var(--goa-callout-heading-typography);
+                        "
+                    >
+                        Application incomplete
+                    </div>
+                    <p
+                        style="
+                            margin: 0;
+                            padding: var(
+                                --goa-callout-l-with-heading-body-padding
+                            );
+                            color: var(--goa-callout-body-color);
+                            font: var(--goa-callout-body-typography);
+                        "
+                    >
+                        You have completed 1 of 3 sections.
+                    </p>
+                </div>
+            </div>
+            <div class="is-replaced">
+                <goa-callout
+                    type="important"
+                    size="medium"
+                    emphasis="low"
+                    heading="Application incomplete"
+                    mb="2xl"
+                    mt="xl"
+                    maxWidth="360px"
+                >
+                    You have completed 1 of 3 sections.
+                </goa-callout>
+            </div>
+            <h3>1. Before you start</h3>
+            <goa-table width="100%" mb="2xl" mt="l">
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <goa-link href="#">Reads terms of use</goa-link>
+                            </td>
+                            <td
+                                class="goa-table-number-column"
+                                style="position: relative"
+                            >
+                                <div
+                                    class="is-broken"
+                                    style="position: absolute"
+                                >
+                                    <goa-badge
+                                        icon="false"
+                                        type="success"
+                                        content="Completed"
+                                        ariaLabel="completed"
+                                    ></goa-badge>
+                                </div>
+                                <div class="is-fixed">
+                                    <goa-badge
+                                        icon="false"
+                                        type="success"
+                                        content="Completed"
+                                        ariaLabel="completed"
+                                    ></goa-badge>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </goa-table>
+            <div class="is-broken">
+                <h3
+                    style="
+                        color: rgb(51, 51, 51);
+                        font-weight: 400;
+                        font-size: 24px;
+                        font-family:
+                            acumin-pro-semi-condensed, helvetica-neue, arial,
+                            sans-serif !important;
+                    "
+                >
+                    2. Prepare application
+                </h3>
+            </div>
+            <div class="is-broken">
+                <table width="100%" class="broken-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <goa-link href="#"
+                                    >Your contact details</goa-link
+                                >
+                            </td>
+                            <td class="goa-table-number-column">
+                                <goa-badge
+                                    icon="false"
+                                    type="information"
+                                    content="Not started"
+                                    ariaLabel="not started"
+                                ></goa-badge>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <goa-link href="#">Your family</goa-link>
+                            </td>
+                            <td class="goa-table-number-column">
+                                <goa-badge
+                                    icon="false"
+                                    type="information"
+                                    content="Not started"
+                                    ariaLabel="not started"
+                                ></goa-badge>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <goa-link href="#"
+                                    >Verify your identity</goa-link
+                                >
+                            </td>
+                            <td class="goa-table-number-column">
+                                <goa-badge
+                                    icon="false"
+                                    type="information"
+                                    content="Not started"
+                                    ariaLabel="not started"
+                                ></goa-badge>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="is-fixed"><h3>2. Prepare application</h3></div>
+            <div class="is-fixed">
+                <goa-table width="100%" mb="2xl" mt="l">
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <goa-link href="#"
+                                        >Your contact details</goa-link
+                                    >
+                                </td>
+                                <td class="goa-table-number-column">
+                                    <goa-badge
+                                        icon="false"
+                                        type="information"
+                                        content="Not started"
+                                        ariaLabel="not started"
+                                    ></goa-badge>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <goa-link href="#">Your family</goa-link>
+                                </td>
+                                <td class="goa-table-number-column">
+                                    <goa-badge
+                                        icon="false"
+                                        type="information"
+                                        content="Not started"
+                                        ariaLabel="not started"
+                                    ></goa-badge>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <goa-link href="#"
+                                        >Verify your identity</goa-link
+                                    >
+                                </td>
+                                <td class="goa-table-number-column">
+                                    <goa-badge
+                                        icon="false"
+                                        type="information"
+                                        content="Not started"
+                                        ariaLabel="not started"
+                                    ></goa-badge>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </goa-table>
+            </div>
+            <h3>3. Schedule service</h3>
+            <p class="small is-not-replaced">
+                You need to complete the previous section before you can start
+                this task.
+            </p>
+            <goa-text size="body-s" color="secondary" mt="2xs" class="is-replaced"
+              >You need to complete the previous section before you can start this task.</goa-text
+            >
+            <div class="is-hardcoded">
+                <details style="margin: 32px 0;">
+                    <summary style="cursor:pointer; color: #666;">Looking for more infomation?</summary>
+                    <p style="margin-top:18px;">This provides additional context for this page.</p>
+                </details>
+            </div>
+            <div class="is-variables">
+                <details class="details">
+                    <summary>Looking for more infomation?</summary>
+                    <div class="details-content">This provides additional context for this page.</div>
+                </details>
+            </div>
+            <div class="is-replaced">
+                <goa-details heading="Why are we asking this question?" mt="l">
+                  <p>We ask this question to determine if you are eligible for child care benefits.</p>
+                </goa-details>
+            </div>
+            <div class="demo-table is-broken">
+                <goa-table width="100%" mt="l" mb="3xl">
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>Receive email confirmation</td>
+                                <td class="goa-table-number-column">
+                                    <goa-badge
+                                        icon="false"
+                                        type="light"
+                                        content="Cannot start yet"
+                                        ariaLabel="cannot start yet"
+                                    ></goa-badge>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pay service fee</td>
+                                <td class="goa-table-number-column">
+                                    <goa-badge
+                                        icon="false"
+                                        type="light"
+                                        content="Cannot start yet"
+                                        ariaLabel="cannot start yet"
+                                    ></goa-badge>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </goa-table>
+            </div>
+            <div class="is-fixed">
+            <goa-table width="100%" mt="l" mb="3xl">
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td>Receive email confirmation</td>
+                            <td class="goa-table-number-column">
+                                <goa-badge
+                                    icon="false"
+                                    type="light"
+                                    content="Cannot start yet"
+                                    ariaLabel="cannot start yet"
+                                ></goa-badge>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pay service fee</td>
+                            <td class="goa-table-number-column">
+                                <goa-badge
+                                    icon="false"
+                                    type="light"
+                                    content="Cannot start yet"
+                                    ariaLabel="cannot start yet"
+                                ></goa-badge>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </goa-table>
+            </div>
+        </div>
+    </goa-page-block>
+    <section slot="footer">
+        <goa-app-footer></goa-app-footer>
+    </section>
+</goa-column-layout>
+
+<!--
+<section class="is-broken placeholder">
+    👎 Imagine some broken styling here.
+</section>
+
+<section class="is-fixed placeholder">
+    🎉 Imagine some fixed styling here.
+</section>
+
+<section class="is-hardcoded placeholder">
+    👎 Imagine a custom component with hardcoded styles here.
+</section>
+
+<section class="is-variables placeholder">
+    🤷 Imagine a custom component with design tokens here.
+</section>
+
+<section class="is-replaced placeholder">
+    🎉 Imagine a design system component here.
+</section>
+-->

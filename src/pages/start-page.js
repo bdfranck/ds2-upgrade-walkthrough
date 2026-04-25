@@ -38,7 +38,7 @@ class StartPage extends HTMLElement {
     if (getStartedBtn) {
       getStartedBtn.onclick = () => {
         this.dispatchEvent(new CustomEvent('navigate-to', { 
-          detail: { page: 'task-list' },
+          detail: { page: 'public-form' },
           bubbles: true
         }));
       };
