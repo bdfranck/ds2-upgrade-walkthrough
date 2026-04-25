@@ -247,9 +247,13 @@ const VersionManager = {
     const links = document.querySelectorAll('link[data-tokens-version]');
     links.forEach(link => link.remove());
 
+    const basePath = window.location.hostname.includes('github.io')
+      ? '/ds2-upgrade-walkthrough/'
+      : '/';
+
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `/tokens-v${this.current}.css`;
+    link.href = `${basePath}tokens-v${this.current}.css`;
     link.dataset.tokensVersion = this.current;
     document.head.appendChild(link);
   },
