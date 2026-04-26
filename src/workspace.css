@@ -42,15 +42,29 @@
   text-decoration: underline;
 }
 
+.variables .workspace-custom-menu a.logout {
+  color: var(--goa-color-interactive-default);
+}
+
+.workspace-custom-menu a.menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .v2.broken .workspace-table {
   position: absolute;
-  margin-top: -40 px;
+  margin-top: -40px;
 }
 
 .cases-toolbar-row,
 .page-header__content {
   display: flex;
   justify-content: space-between;
+}
+
+.cases-toolbar-row {
+  height: calc(40px + 1rem);
 }
 
 .page-header__content {
@@ -69,4 +83,165 @@
 
 .replaced .workspace-page {
   gap: 0
+}
+
+.custom-tabs-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid lightgrey;
+}
+
+.custom-heading {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.tab-container {
+  display: flex;
+  gap: 0.25rem;
+  padding-bottom: 0rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-bottom: 2px solid transparent;
+  color: #333;
+}
+
+.tab.active {
+  border-bottom: 4px solid steelblue;
+  color: steelblue;
+  font-weight: bold;
+}
+
+.tab:hover {
+  color: steelblue;
+}
+
+.filter-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.filter-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  min-width: 200px;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: steelblue;
+}
+
+.filter-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid steelblue;
+  background: transparent;
+  color: steelblue;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.filter-button:hover {
+  background: rgba(70, 130, 180, 0.1);
+}
+
+/* Custom with design tokens */
+
+.variables .custom-tabs-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.variables .custom-heading {
+  margin: 0 0 1rem;
+  font: var(--goa-typography-heading-m);
+  letter-spacing: var(--goa-typography-heading-m-letter-spacing);
+  color: var(--goa-color-text-default);
+}
+
+.variables .tab-container {
+  display: flex;
+  gap: var(--goa-tabs-gap);
+}
+
+.variables .tab {
+  padding: var(--goa-tab-padding);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: var(--goa-tab-typography);
+  color: var(--goa-tab-color-text-not-selected);
+  border-bottom: 3px solid transparent;
+}
+
+.variables .tab.active {
+  border-bottom: 3px solid var(--goa-color-interactive-default);
+  font: var(--goa-tab-typography-selected);
+  color: var(--goa-tab-color-text-selected);
+  font-weight: bold;
+}
+
+.variables .tab:hover {
+  color: var(--goa-color-interactive-default);
+}
+
+.variables .filter-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.variables .filter-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--goa-input-color-border-default);
+  border-radius: var(--goa-input-border-radius-input);
+  font-size: 0.875rem;
+  min-width: 200px;
+  font: var(--goa-text-input-typography);
+}
+
+.variables .filter-input:focus {
+  outline: none;
+  border-color: var(--goa-color-interactive-default);
+}
+
+.variables .filter-input::placeholder {
+  color: var(--goa-text-input-color-text-placeholder);
+}
+
+.variables .filter-button {
+  font: var(--goa-button-text-compact) !important;
+  padding: 0.75rem 1rem;
+  border: var(--goa-button-tertiary-border);
+  background: transparent;
+  color: var(--goa-button-tertiary-color-text);
+  border-radius: var(--goa-button-border-radius);
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.variables .filter-button:hover {
+  background: rgba(70, 130, 180, 0.1);
+}
+
+.variables .filter-container {
+  margin-top: -12px;
 }

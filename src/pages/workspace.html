@@ -1,10 +1,20 @@
 <div class="is-not-replaced workspace-menu-container">
   <goa-app-header url="/" heading="Example Workspace"> </goa-app-header>
-  <div class="workspace-custom-menu">
-    <a href="#" class="current"> Case Management </a>
-    <a href="#"> Intakes </a>
-    <a href="#"> Efficiency portal </a>
-    <a href="#" class="logout"> Logout </a>
+  <div class="is-broken">
+    <div class="workspace-custom-menu">
+      <a href="#" class="current"> Case Management </a>
+      <a href="#"> Intakes </a>
+      <a href="#"> Efficiency portal </a>
+      <a href="#" class="logout"> Logout </a>
+    </div>
+  </div>
+  <div class="is-fixed">
+    <div class="workspace-custom-menu">
+      <a href="#" class="menu">
+        <goa-icon type="menu"></goa-icon>
+        <span>Menu</span></a>
+      <a href="#" class="logout"> Logout </a>
+    </div>
   </div>
 </div>
 <section class="workspace-page">
@@ -77,52 +87,20 @@
     style="flex: 1; padding-top: 2rem; padding-right: 2rem"
   >
     <section class="applications-list">
-      <div class="is-not-replaced">
-        <goa-form-item id="filterChipInput" mb="m" style="padding-top: 2rem">
-          <goa-block gap="xs" direction="row" alignment="start">
-            <goa-input
-              id="searchInput"
-              name="filterChipInput"
-              aria-labelledby="filterChipInput"
-              placeholder="Type to filter"
-            >
-            </goa-input>
-            <goa-popover>
-              <form id="filterForm">
-                <goa-form-item label="Status">
-                  <goa-radio-group name="statusFilter">
-                    <goa-radio-item
-                      value="Pending Review"
-                      label="Pending Review"
-                      checked
-                    ></goa-radio-item>
-                    <goa-radio-item
-                      value="Approved"
-                      label="Approved"
-                    ></goa-radio-item>
-                    <goa-radio-item
-                      value="In Progress"
-                      label="In Progress"
-                    ></goa-radio-item>
-                  </goa-radio-group>
-                </goa-form-item>
-                <goa-button type="tertiary" mt="m" id="clearStatusFilter">
-                  Remove filter
-                </goa-button>
-              </form>
-              <div slot="target">
-                <goa-button
-                  type="tertiary"
-                  leadingIcon="funnel"
-                  size="compact"
-                  aria-label="Filter table"
-                >
-                  Filter
-                </goa-button>
-              </div>
-            </goa-popover>
-          </goa-block>
-        </goa-form-item>
+
+      <div class="is-not-replaced" id="custom-work-heading">
+        <h2 class="custom-heading">Applications</h2>
+        <section class="custom-tabs-section">
+          <div class="tab-container">
+            <button class="tab active">Unassigned</button>
+            <button class="tab">In progress</button>
+            <button class="tab">Complete</button>
+          </div>
+          <div class="filter-container">
+            <input type="text" placeholder="Type to filter..." class="filter-input">
+            <button class="filter-button">Filter</button>
+          </div>
+        </section>
       </div>
       <div id="filterChipsContainer"></div>
       <div
@@ -130,7 +108,7 @@
       >
         <div class="page-header__content">
           <div class="page-header__title-container">
-            <goa-text version="2" size="heading-l" mt="0" mb="0">Applications</goa-text>
+            <goa-text version="2" size="heading-m" mt="0" mb="0">Applications</goa-text>
           </div>
           <div class="page-header__actions">
             <goa-button-group version="2"
