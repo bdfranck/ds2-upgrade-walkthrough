@@ -16,21 +16,6 @@
     margin-bottom: 2rem;
 }
 
-.replaced .workspace-page {
-    background-color: var(--goa-color-greyscale-50);
-}
-
-.replaced .workspace-main {
-    background: var(--goa-color-greyscale-white);
-    margin-top: 1rem;
-    margin-right: 1rem;
-    padding: 2rem;
-    border-radius: var(--goa-border-radius-3xl);
-    border: 1px solid var(--goa-color-greyscale-150);
-	min-height: calc(100vh - var(--goa-space-l) * 2);
-
-}
-
 .broken-table {
     margin: 1rem 0 3rem;
 }

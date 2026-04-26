@@ -1,0 +1,72 @@
+.replaced .workspace-page {
+    background-color: var(--goa-color-greyscale-50);
+}
+
+.replaced .workspace-main {
+    background: var(--goa-color-greyscale-white);
+    margin-top: 1rem;
+    margin-right: 1rem;
+    padding: 2rem;
+    border-radius: var(--goa-border-radius-3xl);
+    border: 1px solid var(--goa-color-greyscale-150);
+	min-height: calc(100vh - var(--goa-space-l) * 2);
+}
+
+.workspace-menu-container {
+  position: relative;
+}
+
+.workspace-custom-menu {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  display: flex;
+  gap: 2rem;
+}
+
+.workspace-custom-menu a {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+  padding-bottom: 14px;
+}
+
+.workspace-custom-menu a.current {
+  border-bottom: 4px solid steelblue;
+}
+
+.workspace-custom-menu a.logout {
+  font-weight: normal;
+  color: steelblue;
+  text-decoration: underline;
+}
+
+.v2.broken .workspace-table {
+  position: absolute;
+  margin-top: -40 px;
+}
+
+.cases-toolbar-row,
+.page-header__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-header__content {
+  margin-bottom: 1rem;
+}
+
+.cases-search-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.workspace-page {
+  display: flex;
+  gap: 2rem;
+}
+
+.replaced .workspace-page {
+  gap: 0
+}

@@ -1,198 +1,225 @@
-<div class="is-not-replaced">
-    <goa-app-header url="/" heading="Case Management">
-        <goa-app-header-menu heading="Navigate" leadingIcon="menu">
-            <a href="#workspace">Applications</a>
-            <a href="#public-form">Public Form</a>
-        </goa-app-header-menu>
-        <a href="#">My Profile</a>
-        <a href="#" class="interactive">Sign out</a>
-    </goa-app-header>
+<div class="is-not-replaced workspace-menu-container">
+  <goa-app-header url="/" heading="Example Workspace"> </goa-app-header>
+  <div class="workspace-custom-menu">
+    <a href="#" class="current"> Case Management </a>
+    <a href="#"> Intakes </a>
+    <a href="#"> Efficiency portal </a>
+    <a href="#" class="logout"> Logout </a>
+  </div>
 </div>
-<section class="workspace-page" style="display: flex; gap: 2rem">
-    <section class="workspace-sidebar" style="">
-        <div class="is-not-replaced">
-            <goa-side-menu>
-                <a href="#workspace" class="current">Applications</a>
-                <a href="#">Assigned to me</a>
-                <a href="#">Team queue</a>
-                <goa-side-menu-heading> References </goa-side-menu-heading>
-                <a href="#">Policies</a>
-                <a href="#">Procedures</a>
-                <goa-side-menu-heading> Reports </goa-side-menu-heading>
+<section class="workspace-page">
+  <section class="workspace-sidebar" style="">
+    <div class="is-not-replaced">
+      <goa-side-menu>
+        <div style="height: 20px; width: 200px"></div>
+        <a href="#" class="current is-current">Applications</a>
+        <a href="#">Assigned to me</a>
+        <a href="#">Team queue</a>
+        <goa-side-menu-heading icon="book"> References </goa-side-menu-heading>
+        <a href="#">Policies</a>
+        <a href="#">Procedures</a>
+        <goa-side-menu-heading icon="stats-chart">
+          Reports
+        </goa-side-menu-heading>
+        <a href="#">Daily summary</a>
+        <a href="#">Weekly stats</a>
+        <div style="height: calc(100vh - 513px)"></div>
+      </goa-side-menu>
+    </div>
+    <div class="is-replaced">
+      <goa-work-side-menu
+        heading="Case Management"
+        url="#workspace"
+        open="true"
+      >
+        <div slot="primary">
+          <goa-work-side-menu-item
+            label="Applications"
+            icon="home"
+            href="#workspace"
+          >
+          </goa-work-side-menu-item>
+          <goa-work-side-menu-item
+            label="Assigned to me"
+            icon="person"
+            href="#workspace/assigned-to-me"
+          >
+          </goa-work-side-menu-item>
+          <goa-work-side-menu-item
+            label="Team queue"
+            icon="people"
+            href="#workspace/team-queue"
+          >
+          </goa-work-side-menu-item>
 
-                <a href="#">Daily summary</a>
-                <a href="#">Weekly stats</a>
-            </goa-side-menu>
+          <goa-work-side-menu-group heading="References" icon="book">
+            <goa-work-side-menu-item href="#" label="Policies">
+            </goa-work-side-menu-item>
+            <goa-work-side-menu-item href="#" label="Procedures">
+            </goa-work-side-menu-item>
+          </goa-work-side-menu-group>
+          <goa-work-side-menu-group heading="Reports" icon="stats-chart">
+            <goa-work-side-menu-item href="#" label="Daily summary">
+            </goa-work-side-menu-item>
+            <goa-work-side-menu-item href="#" label="Weekly stats">
+            </goa-work-side-menu-item>
+          </goa-work-side-menu-group>
         </div>
-        <div class="is-replaced">
-            <goa-work-side-menu
-                heading="Case Management"
-                url="#workspace"
-                open="true"
+        <div slot="secondary">
+          <goa-work-side-menu-item icon="document" label="Intakes"></goa-work-side-menu-item>
+          <goa-work-side-menu-item icon="earth" label="Efficiency Portal"></goa-work-side-menu-item>
+        </div>
+      </goa-work-side-menu>
+    </div>
+  </section>
+  <main
+    class="workspace-main"
+    style="flex: 1; padding-top: 2rem; padding-right: 2rem"
+  >
+    <section class="applications-list">
+      <div class="is-not-replaced">
+        <goa-form-item id="filterChipInput" mb="m" style="padding-top: 2rem">
+          <goa-block gap="xs" direction="row" alignment="start">
+            <goa-input
+              id="searchInput"
+              name="filterChipInput"
+              aria-labelledby="filterChipInput"
+              placeholder="Type to filter"
             >
-                <div slot="primary">
-                    <goa-work-side-menu-item
-                        label="Applications"
-                        href="#workspace"
-                    ></goa-work-side-menu-item>
-                    <goa-work-side-menu-item
-                        label="Assigned to me"
-                        href="#workspace/assigned-to-me"
-                    ></goa-work-side-menu-item>
-                    <goa-work-side-menu-item
-                        label="Team queue"
-                        href="#workspace/team-queue"
-                    ></goa-work-side-menu-item>
-
-                    <goa-work-side-menu-group heading="References">
-                        <goa-work-side-menu-item
-                            href="#"
-                            label="Policies"
-                        ></goa-work-side-menu-item>
-                        <goa-work-side-menu-item
-                            href="#"
-                            label="Procedures"
-                        ></goa-work-side-menu-item>
-                    </goa-work-side-menu-group>
-                    <goa-work-side-menu-group heading="Reports">
-                        <goa-work-side-menu-item
-                            href="#"
-                            label="Daily summary"
-                        ></goa-work-side-menu-item>
-                        <goa-work-side-menu-item
-                            href="#"
-                            label="Weekly stats"
-                        ></goa-work-side-menu-item>
-                    </goa-work-side-menu-group>
-                </div>
-            </goa-work-side-menu>
+            </goa-input>
+            <goa-popover>
+              <form id="filterForm">
+                <goa-form-item label="Status">
+                  <goa-radio-group name="statusFilter">
+                    <goa-radio-item
+                      value="Pending Review"
+                      label="Pending Review"
+                      checked
+                    ></goa-radio-item>
+                    <goa-radio-item
+                      value="Approved"
+                      label="Approved"
+                    ></goa-radio-item>
+                    <goa-radio-item
+                      value="In Progress"
+                      label="In Progress"
+                    ></goa-radio-item>
+                  </goa-radio-group>
+                </goa-form-item>
+                <goa-button type="tertiary" mt="m" id="clearStatusFilter">
+                  Remove filter
+                </goa-button>
+              </form>
+              <div slot="target">
+                <goa-button
+                  type="tertiary"
+                  leadingIcon="funnel"
+                  size="compact"
+                  aria-label="Filter table"
+                >
+                  Filter
+                </goa-button>
+              </div>
+            </goa-popover>
+          </goa-block>
+        </goa-form-item>
+      </div>
+      <div id="filterChipsContainer"></div>
+      <div
+        class="is-replaced workspace-header"
+      >
+        <div class="page-header__content">
+          <div class="page-header__title-container">
+            <goa-text version="2" size="heading-l" mt="0" mb="0">Applications</goa-text>
+          </div>
+          <div class="page-header__actions">
+            <goa-button-group version="2"
+              ><div><goa-button size="compact" type="secondary">More</goa-button></div>
+              <div>
+                <goa-button size="compact" type="primary">Add application</goa-button>
+              </div></goa-button-group
+            >
+          </div>
         </div>
+        <div class="toolbar-wrapper">
+          <div class="cases-toolbar-row">
+            <div class="cases-toolbar-tabs">
+              <goa-tabs version="2" variant="segmented"
+                ><goa-tab version="2" slug="workspace" open="true" heading="Unassigned" ></goa-tab
+                  ><goa-tab version="2" slug="workspace" open="false" heading="In progress"></goa-tab
+                  ><goa-tab version="2" slug="workspace" open="false" heading="Complete"></goa-tab
+              ></goa-tabs>
+              <div class="cases-toolbar-tabs__spacer" aria-hidden="true"></div>
+            </div>
+            <div class="cases-search-row">
+              <goa-input placeholder="Type to filter..." size="compact" width="200px" value=""></goa-input
+                >
+                <goa-button size="compact" type="tertiary" leadingicon="filter">Filter</goa-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <goa-table width="100%" class="workspace-table">
+        <table width="100%">
+          <thead>
+            <tr>
+              <th>Application ID</th>
+              <th>Applicant Name</th>
+              <th>Date Submitted</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>APP-001</td>
+              <td>John Smith</td>
+              <td>2024-01-15</td>
+              <td>
+                <goa-badge
+                  type="information"
+                  content="Pending Review"
+                  ariaLabel="Pending Review"
+                ></goa-badge>
+              </td>
+              <td>
+                <goa-button type="tertiary" size="compact">View</goa-button>
+              </td>
+            </tr>
+            <tr>
+              <td>APP-002</td>
+              <td>Jane Doe</td>
+              <td>2024-01-16</td>
+              <td>
+                <goa-badge
+                  type="success"
+                  content="Approved"
+                  ariaLabel="Approved"
+                ></goa-badge>
+              </td>
+              <td>
+                <goa-button type="tertiary" size="compact">View</goa-button>
+              </td>
+            </tr>
+            <tr>
+              <td>APP-003</td>
+              <td>Robert Johnson</td>
+              <td>2024-01-17</td>
+              <td>
+                <goa-badge
+                  type="information"
+                  content="In Progress"
+                  ariaLabel="In Progress"
+                ></goa-badge>
+              </td>
+              <td>
+                <goa-button type="tertiary" size="compact">View</goa-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </goa-table>
     </section>
-    <main
-        class="workspace-main"
-        style="flex: 1; padding-top: 2rem; padding-right: 2rem"
-    >
-        <section class="applications-list">
-            <goa-form-item
-                id="filterChipInput"
-                mb="m"
-                style="padding-top: 2rem"
-            >
-                <goa-block gap="xs" direction="row" alignment="start">
-                    <goa-input
-                        id="searchInput"
-                        name="filterChipInput"
-                        aria-labelledby="filterChipInput"
-                        placeholder="Type to filter"
-                    >
-                    </goa-input>
-                    <goa-popover>
-                        <form id="filterForm">
-                            <goa-form-item label="Status">
-                                <goa-radio-group name="statusFilter">
-                                    <goa-radio-item
-                                        value="Pending Review"
-                                        label="Pending Review"
-                                        checked
-                                    ></goa-radio-item>
-                                    <goa-radio-item
-                                        value="Approved"
-                                        label="Approved"
-                                    ></goa-radio-item>
-                                    <goa-radio-item
-                                        value="In Progress"
-                                        label="In Progress"
-                                    ></goa-radio-item>
-                                </goa-radio-group>
-                            </goa-form-item>
-                            <goa-button
-                                type="tertiary"
-                                mt="m"
-                                id="clearStatusFilter"
-                            >
-                                Remove filter
-                            </goa-button>
-                        </form>
-                        <div slot="target">
-                            <goa-button
-                                type="tertiary"
-                                leadingIcon="funnel"
-                                size="compact"
-                                aria-label="Filter table"
-                            >
-                                Filter
-                            </goa-button>
-                        </div>
-                    </goa-popover>
-                </goa-block>
-            </goa-form-item>
-            <div id="filterChipsContainer"></div>
-            <goa-table width="100%">
-                <table width="100%">
-                    <thead>
-                        <tr>
-                            <th>Application ID</th>
-                            <th>Applicant Name</th>
-                            <th>Date Submitted</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>APP-001</td>
-                            <td>John Smith</td>
-                            <td>2024-01-15</td>
-                            <td>
-                                <goa-badge
-                                    type="information"
-                                    content="Pending Review"
-                                    ariaLabel="Pending Review"
-                                ></goa-badge>
-                            </td>
-                            <td>
-                                <goa-button type="tertiary" size="compact"
-                                    >View</goa-button
-                                >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>APP-002</td>
-                            <td>Jane Doe</td>
-                            <td>2024-01-16</td>
-                            <td>
-                                <goa-badge
-                                    type="success"
-                                    content="Approved"
-                                    ariaLabel="Approved"
-                                ></goa-badge>
-                            </td>
-                            <td>
-                                <goa-button type="tertiary" size="compact"
-                                    >View</goa-button
-                                >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>APP-003</td>
-                            <td>Robert Johnson</td>
-                            <td>2024-01-17</td>
-                            <td>
-                                <goa-badge
-                                    type="information"
-                                    content="In Progress"
-                                    ariaLabel="In Progress"
-                                ></goa-badge>
-                            </td>
-                            <td>
-                                <goa-button type="tertiary" size="compact"
-                                    >View</goa-button
-                                >
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </goa-table>
-        </section>
-    </main>
+  </main>
 </section>
