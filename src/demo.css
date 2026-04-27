@@ -14,7 +14,7 @@
 }
 
 .demo-sidebar {
-    width: 340px;
+    width: 350px;
     border-left: 1px solid var(--goa-color-greyscale-200);
     padding: 2rem;
     background-color: var(--goa-color-greyscale-50);
